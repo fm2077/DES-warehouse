@@ -1,0 +1,8 @@
+{
+    "num_robots": 10,
+    "num_stations": 5,
+    "sim_duration": 480,
+    "task_arrival_rate": 2.0,
+    "robot_speed": 1.0,
+    "seed": 42
+}

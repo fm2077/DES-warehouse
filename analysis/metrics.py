@@ -7,6 +7,7 @@ class MetricsCollector:
         self.tasks_created = []                                                             # some event logs
         self.tasks_completed = []
         self.robot_status_log = []
+        self.robot_positions = []                                                           # log pos of each robot vs time for animation
 
 
     def log_task_created(self, task):
@@ -19,6 +20,10 @@ class MetricsCollector:
 
     def log_robot_status(self, robot_id, status, timestamp):
         self.robot_status_log.append((robot_id, status, timestamp))
+
+
+    def log_robot_position(self, robot_id, pos, timestamp):
+        self.robot_positions.append((robot_id, pos[0], pos[1], timestamp))
 
 
     def throughput(self):

@@ -4,7 +4,7 @@ from sim.warehouse import Warehouse
 from sim.task import TaskGenerator
 from sim.robot import Robot
 from analysis.metrics import MetricsCollector
-from analysis.visualize import plot_results
+from analysis.visualize import plot_results, plot_warehouse, animate_warehouse
 
 with open("config.json") as f:
     CONFIG = json.load(f)                                                                   # load simulation input data
@@ -23,9 +23,11 @@ def run_sim(config):
         env.process(robot.work())                                                           # register each robot generator with the queue and wrap it as a process
     env.run(until = config["sim_duration"])
 
-    return metrics_sim
+    return metrics_sim, warehouse
 
 if __name__ == "__main__":
-    metrics_sim = run_sim(CONFIG)
+    metrics_sim, warehouse = run_sim(CONFIG)
     metrics_sim.summary(CONFIG["num_robots"])
+    plot_warehouse(warehouse)
     plot_results(metrics_sim, CONFIG["num_robots"])
+    animate_warehouse(warehouse, metrics_sim, CONFIG)

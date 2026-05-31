@@ -35,6 +35,7 @@ class TaskGenerator:
             duration = self.rng.uniform(1.0, 5.0)                                           # select task duration random at uniform. in reality has to be empirically measured
             task = Task(station, duration, self.env.now)                                    # create the task
             self.warehouse.task_queue.put(task)                                             # feed to queue
+            self.warehouse.notify_task_available()                                          # wake up idle robots
             self.warehouse.metrics.log_task_created(task)                                   # record task creation for performance analysis
 
 

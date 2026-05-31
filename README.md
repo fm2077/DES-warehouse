@@ -1,7 +1,8 @@
 # DES-warehouse
 
 This is a Discrete-Event Simulation (DES) planner for a multi-agent environment where a fleet of robots perform warehouse tasks to optimize aggregate throughput.\
-The queue management is simple FIFO. Current version has no collision modeling, charge time, obstacles or path planning.
+The queue assignment policy is either FIFO or greedy. Current version includes obstacles and path planning using A-star but has no collision modeling and charging idle time.\
+Greedy assignment is task-centered selecting nearest robot to the task.
 
 ## Project Layout
 
@@ -24,6 +25,8 @@ DES-warehouse/
 ├── main.py
 ├── config.json
 ├── results.png
+├── warehouse_animation.gif
+├── warehouse_layout.png
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -32,7 +35,7 @@ DES-warehouse/
 ## Stack
 - `simpy` to simulate environment
 - `numpy`, `pandas` for data analysis and statistical analysis
-- `scipy` for optimization
+- `networkx` for grid construction and motion planning
 - `pytest` for testing
 - `matplotlib` for visualization
 

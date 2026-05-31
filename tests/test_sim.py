@@ -67,6 +67,6 @@ def test_robot_completes_task():
 
 def test_full_sim_runs():
     from main import run_sim
-    metrics = run_sim(CONFIG)
+    metrics, warehouse = run_sim(CONFIG)
     assert len(metrics.tasks_completed) > 0
     assert metrics.throughput() > 0

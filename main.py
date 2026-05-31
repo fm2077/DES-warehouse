@@ -9,7 +9,7 @@ CONFIG = {
     "num_robots": 10,
     "num_stations": 5,                                                                      # pick up and drop off locations
     "sim_duration": 120,                                                                    # in min
-    "task_arrival_rate": 2.0,                                                               # is task/min
+    "task_arrival_rate": 2.0,                                                               # is task/min, lambda, used in Poisson arrival time calc.
     "robot_speed": 1.0,                                                                     # in grid_units/min
     "seed": 42                                                                              # for reproducibility and debugging
 }

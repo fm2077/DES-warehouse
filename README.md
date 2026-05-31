@@ -26,7 +26,7 @@ DES-warehouse/
 
 ## Stack
 - simpy, to simulate environment
-- numpy, pandas, for data analysis
+- numpy, pandas, for data analysis and statistical analysis
 - scipy, for optimization
 - pytest, for testing
 - matplotlib, for visualization

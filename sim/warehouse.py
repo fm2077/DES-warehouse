@@ -14,12 +14,15 @@ class Warehouse:
         self.grid_size = (20, 20)
         self.home = (0,0)                                                                   # robot start/return position
 
-        self.graph = nx.grid_2d_graph(self.grid_size[0], self.grid_size[1])                 # let nx to manage grid for motion planning
+        self.graph = nx.grid_2d_graph(self.grid_size[0], self.grid_size[1])                 # let nx to manage grid for motion planning        
 
-        self.obstacles = [(5, 5), (5, 6), (5, 7), (6, 5), (6, 6), (6, 7)]                   # a wall obstacle
+        self.obstacles = [(5, 5), (5, 6), (5, 7), (6, 5), (6, 6), (6, 7), 
+                          (11, 6), (11, 7), (11, 8), (12, 8), (13, 8)]                      # obstacles
         for obs in self.obstacles:
             if obs in self.graph:
                 self.graph.remove_node(obs)
+
+        self.cell_locks = {n: simpy.Resource(env, capacity=1) for n in self.graph.nodes}    # lock occupied cells to avoid collision
 
         rng = np.random.default_rng(config["seed"])                                         # initiate an rng generator
         valid_nodes = list(self.graph.nodes)                                                # exclude obstacles

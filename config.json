@@ -1,9 +1,10 @@
 {
-    "num_robots": 9,
-    "num_stations": 10,
+    "num_robots": 10,
+    "num_stations": 15,
     "sim_duration": 480,
     "task_arrival_rate": 2.0,
     "robot_speed": 1.0,
     "seed": 42,
-    "policy": "greedy"
+    "policy": "greedy",
+    "deadlock_timeout": 5.0
 }

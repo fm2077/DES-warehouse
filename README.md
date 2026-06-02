@@ -1,7 +1,7 @@
 # DES-warehouse
 
 This is a Discrete-Event Simulation (DES) planner for a multi-agent environment where a fleet of robots perform warehouse tasks to optimize aggregate throughput.\
-The queue assignment policy is either FIFO or greedy. Current version includes obstacles and path planning using A-star but has no collision modeling and charging idle time.\
+The queue assignment policy is either FIFO or greedy. Current version includes obstacles, path planning using A-star, and cell-lock collision management with deadlock resolution but has no charging idle time.\
 Greedy assignment is task-centered selecting nearest robot to the task. A Monte Carlo statistical analysis analyzes whether greedy policy has significant advantage over simple FIFO.
 
 ## Project Layout

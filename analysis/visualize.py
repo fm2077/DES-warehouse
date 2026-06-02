@@ -47,6 +47,10 @@ def plot_warehouse(warehouse):
     sy = [s[1] for s in warehouse.stations]
     ax.scatter(sx, sy, color="steelblue", s=120, zorder=4, label="stations")
 
+    cx = [cs[0] for cs in warehouse.charging_stations]                                      # charging stations
+    cy = [cs[1] for cs in warehouse.charging_stations]
+    ax.scatter(cx, cy, color="gold", s=75, zorder=5, label="stations", marker="D")
+
     ax.scatter(*warehouse.home, color="red", s=150, marker="s", zorder=5, label="home")     # draw home
 
     for station in warehouse.stations:                                                      # draw a sample path from home to each station
@@ -103,14 +107,18 @@ def animate_warehouse(warehouse, metrics, config, speedup=10, interval=50):
     for (u, v) in warehouse.graph.edges():
         ax.plot([u[0], v[0]], [u[1], v[1]], color="lightgray", linewidth=0.5)
 
-    for obs in warehouse.obstacles:
+    for obs in warehouse.obstacles:                                                         # obstacles
         ax.add_patch(plt.Rectangle((obs[0] - 0.4, obs[1] - 0.4), 0.8, 0.8,
                                     color="black", zorder=3))
 
-    sx = [s[0] for s in warehouse.stations]
+    sx = [s[0] for s in warehouse.stations]                                                 # work stations
     sy = [s[1] for s in warehouse.stations]
     ax.scatter(sx, sy, color="steelblue", s=100, zorder=4, label="stations", marker="^")
     ax.scatter(*warehouse.home, color="red", s=120, marker="s", zorder=4, label="home")
+
+    cx = [cs[0] for cs in warehouse.charging_stations]                                      # charging stations
+    cy = [cs[1] for cs in warehouse.charging_stations]
+    ax.scatter(cx, cy, color="gold", s=75, zorder=5, label="stations", marker="D")
 
     ax.set_xlim(-1, warehouse.grid_size[0]); ax.set_ylim(-1, warehouse.grid_size[1])
     ax.set_aspect("equal")

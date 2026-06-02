@@ -6,5 +6,11 @@
     "robot_speed": 1.0,
     "seed": 42,
     "policy": "greedy",
-    "deadlock_timeout": 5.0
+    "deadlock_timeout": 5.0,
+    "battery_capacity": 100.0,
+    "battery_drain_travel": 2.0,
+    "battery_drain_work": 4.0,
+    "battery_threshold": 20.0,
+    "charge_rate": 5.0,
+    "num_chargers": 2
 }

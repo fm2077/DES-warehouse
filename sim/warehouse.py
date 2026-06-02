@@ -13,9 +13,10 @@ class Warehouse:
         self.metrics = metrics
         self.grid_size = (20, 20)
         self.home = (0,0)                                                                   # robot start/return position
+        self.waiting_robots = []                                                            # keep track of idle robots so only one of them is notified when task is available
 
-        self.graph = nx.grid_2d_graph(self.grid_size[0], self.grid_size[1])                 # let nx to manage grid for motion planning        
-
+        #----------Set up graph and stations-------------
+        self.graph = nx.grid_2d_graph(self.grid_size[0], self.grid_size[1])                 # let nx to manage grid for motion planning
         self.obstacles = [(5, 5), (5, 6), (5, 7), (6, 5), (6, 6), (6, 7), 
                           (11, 6), (11, 7), (11, 8), (12, 8), (13, 8)]                      # obstacles
         for obs in self.obstacles:
@@ -24,15 +25,24 @@ class Warehouse:
 
         self.cell_locks = {n: simpy.Resource(env, capacity=1) for n in self.graph.nodes}    # lock occupied cells to avoid collision
 
+        self.charging_stations = [(0, 0), (0, self.grid_size[1]-1), 
+            (self.grid_size[0]-1, 0), (self.grid_size[0]-1, self.grid_size[1]-1)]           # 4 charging stations at 4 corners of the graph
+        self.charger_resources = {
+            cs: simpy.Resource(env, capacity=config["num_chargers"]) for cs in self.charging_stations   # each charging station has num_chargers capacity
+        }
+
         rng = np.random.default_rng(config["seed"])                                         # initiate an rng generator
         valid_nodes = list(self.graph.nodes)                                                # exclude obstacles
         valid_nodes.remove(self.home)                                                       # exclude home from stations pool
+        for cs in self.charging_stations:                                                   # exclude charging stations from stations pool
+            if cs in valid_nodes:
+                valid_nodes.remove(cs)
         station_indices = rng.choice(len(valid_nodes), size=config["num_stations"], replace=False) # random stations
         self.stations = [valid_nodes[i] for i in station_indices]                           # set location of stations
 
         #self.task_queue = simpy.Store(env)                                                 # default unlimited capacity FIFO queue storing the tasks. Robot and task master inherit task_queue from Warehouse
         self.task_queue = simpy.FilterStore(env)                                            # use greedy policy instead of simple FIFO queue
-        self.waiting_robots = []                                                            # keep track of idle robots so only one of them is notified when task is available
+        
 
     @staticmethod
     def heuristic(a, b):                                                                    # L1 is a perfect heuristic for this grid as it is both admissible and consistent

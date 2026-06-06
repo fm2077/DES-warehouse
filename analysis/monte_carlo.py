@@ -82,7 +82,7 @@ def plot_sweep(results: dict, fleet_sizes: list[int]) -> None:
     axes[1].legend()
 
     plt.tight_layout()
-    plt.savefig("monte_carlo_results.png", dpi=150)
+    plt.savefig("outputs/monte_carlo_results.png", dpi=150)
     plt.show()
 
 

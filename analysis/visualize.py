@@ -27,7 +27,7 @@ def plot_results(metrics, num_robots):
     axes[2].set_xlabel("Sim Time (min)"); axes[2].set_ylabel("Cumulative Tasks Completed"); axes[2].set_title("Throughput Over Time")
 
     plt.tight_layout()
-    plt.savefig("results.png", dpi=150)
+    plt.savefig("outputs/results.png", dpi=150)
     plt.show()
 
 
@@ -64,7 +64,7 @@ def plot_warehouse(warehouse):
     ax.set_xlabel("x"); ax.set_ylabel("y")
 
     plt.tight_layout()
-    plt.savefig("warehouse_layout.png", dpi=150)
+    plt.savefig("outputs/warehouse_layout.png", dpi=150)
     plt.show()
 
 
@@ -136,6 +136,6 @@ def animate_warehouse(warehouse, metrics, config, speedup=10, interval=50):
 
     anim = FuncAnimation(fig, update, frames=len(frames), interval=interval, blit=True, repeat=False)
 
-    anim.save("warehouse_animation.gif", writer="pillow", fps=400 // interval)
+    anim.save("outputs/warehouse_animation.gif", writer="pillow", fps=400 // interval)
     print("Saved warehouse_animation.gif")
     plt.show()

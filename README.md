@@ -25,14 +25,16 @@ DES-warehouse/
 ├── tests/
 │   └── test_sim.py
 │
+├── outputs/
+│   ├── monte_carlo_results.png
+│   ├── results.png
+│   ├── sobol_indices.png
+│   ├── sobol_results.xlsx
+│   ├── warehouse_animation.gif
+│   └── warehouse_layout.png
+│
 ├── main.py
 ├── config.json
-├── monte_carlo_results.png
-├── results.png
-├── sobol_indices.png
-├── sobol_results.xlsx
-├── warehouse_animation.gif
-├── warehouse_layout.png
 ├── requirements.txt
 ├── .gitignore
 └── README.md

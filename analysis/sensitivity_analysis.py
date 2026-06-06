@@ -134,7 +134,7 @@ def plot_sobol(problem: dict, Si: dict) -> None:
     ax.set_ylim(0, 1)
 
     plt.tight_layout()
-    plt.savefig("sobol_indices.png", dpi=150)
+    plt.savefig("outputs/sobol_indices.png", dpi=150)
     plt.show()
 
 
@@ -168,7 +168,7 @@ def _save_excel(ranked: list) -> None:
     )
     df["Significant"] = (df["ST"] >= 0.05)                                                  # add a significance column
     df = df.round(4)
-    df.to_excel("sobol_results.xlsx", index=False)
+    df.to_excel("outputs/sobol_results.xlsx", index=False)
     print("\nSaved: sobol_results.xlsx")
 
 

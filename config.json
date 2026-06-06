@@ -1,4 +1,6 @@
 {
+    "grid_dim_1": 20,
+    "grid_dim_2": 20,
     "num_robots": 10,
     "num_stations": 15,
     "sim_duration": 480,

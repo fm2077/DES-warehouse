@@ -11,7 +11,7 @@ class Warehouse:
         self.env = env
         self.config = config
         self.metrics = metrics
-        self.grid_size = (20, 20)
+        self.grid_size = (config["grid_dim_1"], config["grid_dim_2"])
         self.home = (0,0)                                                                   # robot start/return position
         self.waiting_robots = []                                                            # keep track of idle robots so only one of them is notified when task is available
 
